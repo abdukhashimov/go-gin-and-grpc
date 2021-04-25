@@ -1,13 +1,18 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import "github.com/abdukhashimov/go_gin_example/pkg/logger"
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
+	cfg := config.Load()
+	log := logger.New(cfg.LogLevel, "voxe_api_gateway")
+	gprcClients, _ := services.NewGrpcClients(&cfg)
+
+	server := api.New(&api.RouterOptions{
+		Log:      log,
+		Cfg:      &cfg,
+		Services: gprcClients,
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+
+	server.Run(cfg.HttpPort)
+
 }
