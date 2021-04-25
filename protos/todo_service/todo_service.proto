@@ -1,0 +1,10 @@
+syntax="proto3";
+
+package todo_service;
+option go_package="genproto/todo_service";
+
+import "todo.proto";
+
+service TodoService {
+    rpc CreateTodo(TodoModel) returns (TodoModel) {}
+}

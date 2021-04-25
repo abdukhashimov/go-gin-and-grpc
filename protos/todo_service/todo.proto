@@ -1,0 +1,10 @@
+syntax="proto3";
+
+package todo_service;
+option go_package="genproto/todo_service";
+
+message TodoModel {
+    stirng id = 1;
+    string task_name = 1;
+    string task_status = 2;
+}
