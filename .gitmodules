@@ -1,0 +1,3 @@
+[submodule "go-gin-grpc-protos"]
+	path = go-gin-grpc-protos
+	url = git@github.com:abdukhashimov/go-gin-grpc-protos.git
