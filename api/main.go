@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	v1 "github.com/abdukhashimov/go_gin_example/api/handlers/v1"
 	"github.com/abdukhashimov/go_gin_example/config"
 	"github.com/abdukhashimov/go_gin_example/pkg/grpc_client"
 	"github.com/abdukhashimov/go_gin_example/pkg/logger"
