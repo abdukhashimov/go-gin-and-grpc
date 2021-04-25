@@ -14,7 +14,7 @@ func (h *handlerV1) CreateNewTodo(c *gin.Context) {
 // @Tags analytics
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} models.GetDailyViewCountResponse
+// @Success 200 {object} models.AllTodoModel
 // @Failure 404 {object} models.ResponseError
 // @Failure 500 {object} models.ResponseError
 func (h *handlerV1) GetAllTodo(c *gin.Context) {
