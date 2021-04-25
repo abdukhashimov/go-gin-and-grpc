@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/abdukhashimov/go_gin_example/config"
+	"github.com/abdukhashimov/go_gin_example/pkg/grpc_client"
+	"github.com/abdukhashimov/go_gin_example/pkg/logger"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -16,7 +18,6 @@ type Config struct {
 	Logger     logger.Logger
 	GrpcClient *grpc_client.GrpcClient
 	Cfg        config.Config
-	Services   services.ServiceManager
 }
 
 // @securityDefinitions.apikey ApiKeyAuth
@@ -44,7 +45,6 @@ func New(cnf Config) *gin.Engine {
 		Logger:     cnf.Logger,
 		GrpcClient: cnf.GrpcClient,
 		Cfg:        cnf.Cfg,
-		Services:   cnf.Services,
 	})
 
 	r.GET("/", func(c *gin.Context) {
