@@ -1,14 +1,23 @@
 package config
 
-import "os"
+import (
+	"os"
+
+	"github.com/spf13/cast"
+)
 
 type Config struct {
+	LogLevel string
+	HttpPort string
 }
 
 func Load() Config {
-	c := Config{}
+	config := Config{}
 
-	return c
+	config.LogLevel = cast.ToString(getOrReturnDefault("LOG_LEVEL", "debug"))
+	config.HttpPort = cast.ToString(getOrReturnDefault("HTTP_PORT", ":8080"))
+
+	return config
 }
 
 func getOrReturnDefault(key string, defaultValue interface{}) interface{} {

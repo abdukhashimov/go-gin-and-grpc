@@ -18,7 +18,7 @@ import (
 type Config struct {
 	Logger     logger.Logger
 	GrpcClient *grpc_client.GrpcClient
-	Cfg        config.Config
+	Cfg        *config.Config
 }
 
 // @securityDefinitions.apikey ApiKeyAuth

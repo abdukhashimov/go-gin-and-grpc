@@ -23,14 +23,14 @@ import (
 type handlerV1 struct {
 	log        logger.Logger
 	grpcClient *grpc_client.GrpcClient
-	cfg        config.Config
+	cfg        *config.Config
 }
 
 //HandlerV1Config ...
 type HandlerV1Config struct {
 	Logger     logger.Logger
 	GrpcClient *grpc_client.GrpcClient
-	Cfg        config.Config
+	Cfg        *config.Config
 }
 
 const (
