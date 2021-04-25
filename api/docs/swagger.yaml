@@ -56,8 +56,30 @@ paths:
       summary: Get List of Todo
       tags:
       - TODO
+    post:
+      consumes:
+      - application/json
+      description: API to retreive list of todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AllTodoModel'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+      summary: Get List of Todo
+      tags:
+      - TODO
   /v1/todo/{id}:
-    get:
+    delete:
       consumes:
       - application/json
       description: API to retreive a single todo
@@ -68,6 +90,28 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+      summary: Get a Todo
+      tags:
+      - TODO
+    get:
+      consumes:
+      - application/json
+      description: API to retreive a single todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SingleTodoModel'
         "404":
           description: Not Found
           schema:

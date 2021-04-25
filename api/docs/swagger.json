@@ -37,10 +37,76 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "API to retreive list of todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TODO"
+                ],
+                "summary": "Get List of Todo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.AllTodoModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseError"
+                        }
+                    }
+                }
             }
         },
         "/v1/todo/{id}": {
             "get": {
+                "description": "API to retreive a single todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TODO"
+                ],
+                "summary": "Get a Todo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.SingleTodoModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
                 "description": "API to retreive a single todo",
                 "consumes": [
                     "application/json"
@@ -73,7 +139,7 @@
                     }
                 }
             },
-            "put": {
+            "delete": {
                 "description": "API to retreive a single todo",
                 "consumes": [
                     "application/json"

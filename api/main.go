@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 
+	_ "github.com/abdukhashimov/go_gin_example/api/docs" //for swagger
 	v1 "github.com/abdukhashimov/go_gin_example/api/handlers/v1"
 	"github.com/abdukhashimov/go_gin_example/config"
 	"github.com/abdukhashimov/go_gin_example/pkg/grpc_client"
@@ -51,16 +52,13 @@ func New(cnf Config) *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"data": "Api gateway"})
 	})
 
-	apiV1 := router.Group("/v1")
-	{
-		// -- Todo -->
-		apiV1.GET("/todo", handlerV1.GetAllTodo)
-		apiV1.POST("/todo", handlerV1.CreateNewTodo)
-		apiV1.GET("/todo/:id", handlerV1.GetTodo)
-		apiV1.PUT("/todo/:id", handlerV1.UpdateTodo)
-		apiV1.DELETE("/todo/:id", handlerV1.DeleteTodo)
-		// <-- End Todo ---
-	}
+	// -- Todo -->
+	router.GET("/v1/todo", handlerV1.GetAllTodo)
+	router.POST("/v1/todo", handlerV1.CreateNewTodo)
+	router.GET("/v1/todo/:id", handlerV1.GetTodo)
+	router.PUT("/v1/todo/:id", handlerV1.UpdateTodo)
+	router.DELETE("/v1/todo/:id", handlerV1.DeleteTodo)
+	// <-- End Todo ---
 
 	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

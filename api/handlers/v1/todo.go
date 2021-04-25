@@ -4,6 +4,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Router /v1/todo [post]
+// @Summary Get List of Todo
+// @Description API to retreive list of todo
+// @Tags TODO
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} models.AllTodoModel
+// @Failure 404 {object} models.ResponseError
+// @Failure 500 {object} models.ResponseError
 func (h *handlerV1) CreateNewTodo(c *gin.Context) {
 
 }
@@ -47,7 +56,7 @@ func (h *handlerV1) UpdateTodo(c *gin.Context) {
 
 }
 
-// @Router /v1/todo/{id} [get]
+// @Router /v1/todo/{id} [delete]
 // @Summary Get a Todo
 // @Description API to retreive a single todo
 // @Tags TODO
