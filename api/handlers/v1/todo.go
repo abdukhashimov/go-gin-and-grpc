@@ -10,6 +10,10 @@ func (h *handlerV1) GetAllTodo(c *gin.Context) {
 
 }
 
+func (h *handlerV1) GetTodo(c *gin.Context) {
+
+}
+
 func (h *handlerV1) UpdateTodo(c *gin.Context) {
 
 }

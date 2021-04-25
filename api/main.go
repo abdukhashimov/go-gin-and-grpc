@@ -53,11 +53,13 @@ func New(cnf Config) *gin.Engine {
 
 	apiV1 := router.Group("/v1")
 	{
-		apiV1.GET("/todo")
-		apiV1.GET("/todo/:id")
-		apiV1.POST("/todo")
-		apiV1.PUT("/todo/:id")
-		apiV1.DELETE("/todo/:id")
+		// -- Todo -->
+		apiV1.GET("/todo", handlerV1.GetAllTodo)
+		apiV1.POST("/todo", handlerV1.CreateNewTodo)
+		apiV1.GET("/todo/:id", handlerV1.GetTodo)
+		apiV1.PUT("/todo/:id", handlerV1.UpdateTodo)
+		apiV1.DELETE("/todo/:id", handlerV1.DeleteTodo)
+		// <-- End Todo ---
 	}
 
 	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
