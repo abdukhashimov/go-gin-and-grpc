@@ -1,0 +1,109 @@
+definitions:
+  models.AllTodoModel:
+    properties:
+      todo_items:
+        items:
+          $ref: '#/definitions/models.SingleTodoModel'
+        type: array
+    type: object
+  models.Response:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+    type: object
+  models.ResponseError:
+    properties:
+      code:
+        default: 0
+        type: integer
+      message:
+        type: string
+      reason:
+        type: string
+    type: object
+  models.SingleTodoModel:
+    properties:
+      task_name:
+        type: string
+      task_status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/todo:
+    get:
+      consumes:
+      - application/json
+      description: API to retreive list of todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AllTodoModel'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+      summary: Get List of Todo
+      tags:
+      - TODO
+  /v1/todo/{id}:
+    get:
+      consumes:
+      - application/json
+      description: API to retreive a single todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+      summary: Get a Todo
+      tags:
+      - TODO
+    put:
+      consumes:
+      - application/json
+      description: API to retreive a single todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseError'
+      summary: Get a Todo
+      tags:
+      - TODO
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -2,6 +2,10 @@
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
+# github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+## explicit
+github.com/alecthomas/template
+github.com/alecthomas/template/parse
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 ## explicit
 github.com/dgrijalva/jwt-go
@@ -70,6 +74,7 @@ github.com/swaggo/files
 ## explicit
 github.com/swaggo/gin-swagger
 # github.com/swaggo/swag v1.5.1
+## explicit
 github.com/swaggo/swag
 # github.com/ugorji/go/codec v1.1.13
 github.com/ugorji/go/codec
