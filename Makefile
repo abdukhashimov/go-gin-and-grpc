@@ -4,7 +4,7 @@ proto-gen:
 	./scripts/gen-proto.sh	${CURRENT_DIR}
 
 pull-proto-module:
-	git submodule update --init --recursive
+	git submodule update --init --recursive && rm -rf protos/* && cp -R go-gin-grpc-protos/* protos
 
 update-proto-module:
 	git submodule update --remote --merge && rm -rf protos/* && cp -R go-gin-grpc-protos/* protos
