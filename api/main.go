@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
 	v1 "github.com/abdukhashimov/go_gin_example/api/handlers/v1"
@@ -25,13 +24,13 @@ type Config struct {
 // @in header
 // @name Authorization
 func New(cnf Config) *gin.Engine {
-	r := gin.New()
+	router := gin.New()
 
-	r.Static("/images", "./static/images")
+	router.Static("/images", "./static/images")
 
-	r.Use(gin.Logger())
+	router.Use(gin.Logger())
 
-	r.Use(gin.Recovery())
+	router.Use(gin.Recovery())
 
 	//r.Use(middleware.NewAuthorizer(cnf.CasbinEnforcer))
 
@@ -40,7 +39,7 @@ func New(cnf Config) *gin.Engine {
 	config.AllowHeaders = append(config.AllowHeaders, "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
 	config.AllowHeaders = append(config.AllowHeaders, "*")
 
-	r.Use(cors.New(config))
+	router.Use(cors.New(config))
 
 	handlerV1 := v1.New(&v1.HandlerV1Config{
 		Logger:     cnf.Logger,
@@ -48,14 +47,21 @@ func New(cnf Config) *gin.Engine {
 		Cfg:        cnf.Cfg,
 	})
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"data": "Api gateway"})
 	})
 
-	fmt.Println(handlerV1)
+	apiV1 := router.Group("/v1")
+	{
+		apiV1.GET("/todo")
+		apiV1.GET("/todo/:id")
+		apiV1.POST("/todo")
+		apiV1.PUT("/todo/:id")
+		apiV1.DELETE("/todo/:id")
+	}
 
 	url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
-	return r
+	return router
 }
