@@ -1,35 +1,14 @@
 package models
 
-//ResponseSuccess ...
-type ResponseSuccess struct {
-	Metadata interface{}
-	Data     interface{}
-}
-
-//ResponseError ...
 type ResponseError struct {
-	Error interface{}
-}
-
-//InternalServerError ...
-type InternalServerError struct {
-	Code    string `json:"code"`
+	Code    int    `json:"code" default:"0"`
 	Message string `json:"message"`
-}
-
-//ValidationError ...
-type ValidationError struct {
-	Code        string `json:"code"`
-	Message     string `json:"message"`
-	UserMessage string `json:"unread_message"`
-}
-
-type ResponseOK struct {
-	Message interface{}
+	Reason  string `json:"reason"`
 }
 
 type Response struct {
-	ID interface{} `json:"id"`
+	ID      string `json:"id"`
+	Message string `json:"message"`
 }
 
 // Find query ...
